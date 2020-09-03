@@ -1,0 +1,14 @@
+server:
+  port: 0
+
+spring:
+  rabbitmq:
+    host: rabbitmq
+    username: user
+    password: user
+
+application:
+  listener:
+    queues:
+      createUser:
+        name: createUserQueue

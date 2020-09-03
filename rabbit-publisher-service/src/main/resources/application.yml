@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+spring:
+  rabbitmq:
+    host: rabbitmq
+    username: user
+    password: user
+
+application:
+  listener:
+    queues:
+      createUser:
+        name: createUserQueue
+    exchanges:
+      productPurchase:
+        name: productPurchaseExchange

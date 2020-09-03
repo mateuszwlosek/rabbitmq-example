@@ -1,0 +1,87 @@
+{
+   "users":[
+      {
+         "name":"user",
+         "password":"user",
+         "tags":"administrator"
+      }
+   ],
+   "vhosts":[
+      {
+         "name":"/"
+      }
+   ],
+   "permissions":[
+      {
+         "user":"user",
+         "vhost":"/",
+         "configure":".*",
+         "write":".*",
+         "read":".*"
+      }
+   ],
+   "exchanges":[
+      {
+         "name":"productPurchaseExchange",
+         "vhost":"/",
+         "type":"fanout",
+         "durable":true,
+         "auto_delete":false,
+         "internal":false,
+         "arguments":{
+
+         }
+      }
+   ],
+   "bindings":[
+      {
+         "source":"productPurchaseExchange",
+         "vhost":"/",
+         "destination":"generateInvoiceQueue",
+         "destination_type":"queue",
+         "routing_key":"",
+         "arguments":{
+
+         }
+      },
+      {
+         "source":"productPurchaseExchange",
+         "vhost":"/",
+         "destination":"shipProductQueue",
+         "destination_type":"queue",
+         "routing_key":"",
+         "arguments":{
+
+         }
+      }
+   ],
+   "queues":[
+      {
+         "name":"createUserQueue",
+         "vhost":"/",
+         "durable":true,
+         "auto_delete":false,
+         "arguments":{
+
+         }
+      },
+      {
+         "name":"generateInvoiceQueue",
+         "vhost":"/",
+         "durable":true,
+         "auto_delete":false,
+         "arguments":{
+
+         }
+      },
+      {
+         "name":"shipProductQueue",
+         "vhost":"/",
+         "durable":true,
+         "auto_delete":false,
+         "arguments":{
+
+         }
+      }
+   ]
+}

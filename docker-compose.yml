@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.8.3-management
+    volumes:
+      - ./rabbitmq-config/rabbitmq.config:/etc/rabbitmq/rabbitmq.config
+      - ./rabbitmq-config/definitions.json:/etc/rabbitmq/definitions.json
+    ports:
+      - 5672:5672
+      - 15672:15672
+  rabbit-publisher-service:
+    build: ./rabbit-publisher-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - rabbitmq
+  rabbit-subscriber-invoice-service:
+    build: ./rabbit-subscriber-invoice-service
+    depends_on:
+      - rabbitmq
+  rabbit-subscriber-shipment-service:
+    build: ./rabbit-subscriber-shipment-service
+    depends_on:
+      - rabbitmq
+  rabbit-subscriber-user-service:
+    build: ./rabbit-subscriber-user-service
+    depends_on:
+      - rabbitmq
